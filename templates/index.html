@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Disease Diagnosis</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <!-- Page Container -->
+    <div class="container mx-auto p-8">
+
+        <!-- Title Section -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-purple-700">AI-Powered Disease Diagnosis</h1>
+            <p class="text-lg text-gray-600 mt-2">Personalized Medicine with Machine Learning</p>
+        </div>
+
+        <!-- Form Section -->
+        <div class="bg-white p-6 rounded shadow-md">
+            <form action="/predict" method="POST" class="form-container">
+                <div class="dropdown-wrapper">
+                    <label for="symptoms" class="block text-sm font-medium text-gray-700">
+                        Select Symptoms:
+                    </label>
+                    <!-- Multi-select dropdown with limited height -->
+                    <select id="symptoms" name="symptoms" multiple class="choices w-full border border-gray-300 rounded p-2 focus:ring-purple-500 focus:border-purple-500">
+                        {% for symptom in symptoms %}
+                            <option value="{{ symptom }}" {% if symptom in selected_symptoms %}selected{% endif %}>{{ symptom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <!-- Wrapper for the buttons -->
+                <div id="submit-button-wrapper">
+                    <!-- Submit Button fixed in position -->
+                    <button type="submit" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+                        Predict Disease
+                    </button>
+                    
+                    <!-- Clear Symptoms Button -->
+                    <button id="clear-btn" type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">
+                        Clear Symptoms
+                    </button>
+                </div>
+                
+                <!-- Display prediction result if available -->
+                {% if prediction %}
+                <div class="mt-6 bg-green-100 p-4 rounded">
+                    <p class="text-green-700 font-bold">Predicted {{ prediction  | capitalize }}</p>
+                    <p class="text-gray-600 font-bold">Symptoms provided: {{ ', '.join(selected_symptoms ) }}</p>
+                    <p class="text-green-700">Medication: {{ answer | capitalize }}</p>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const clearButton = document.querySelector('#clear-btn');
+            const dropdown = document.querySelector('#symptoms');
+
+            // Clear symptoms when the clear button is clicked
+            clearButton.addEventListener('click', function () {
+                // Deselect all options in the dropdown
+                Array.from(dropdown.options).forEach(option => {
+                    option.selected = false;
+                });
+
+                // Clear selected items from the Choices.js instance and update UI
+                choices.clearStore(); // Clears Choices.js instance data
+                choices.clearChoices(); // Clears all selected options in the UI
+            });
+        });
+
+        // Initialize the multi-select dropdown using Choices.js for a better UX
+        const choices = new Choices('#symptoms', {
+            removeItemButton: true,
+            searchEnabled: true,
+        });
+    </script>
+
+</body>
+</html>
