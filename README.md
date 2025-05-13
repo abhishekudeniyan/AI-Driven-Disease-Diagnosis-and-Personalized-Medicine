@@ -13,8 +13,8 @@ This project is an AI-powered system designed to diagnose diseases based on user
 | 🧫 Unique Diseases         | 770+                         |
 | ⚖️ Dataset Type            | Imbalanced, Multi-Class      |
 | 📈 Best Model Accuracy     | **93.28%** (Multinomial NB)  |
-| ⏱️ Fastest Model           | Logistic Regression (88%)    |
-| 🔍 Highest Precision       | Random Forest (90.3%)        |
+| ⏱️ Fastest Model           | Logistic Regression (90%)    |
+| 🔍 Highest Precision       | Random Forest (86.3%)        |
 | 🧠 LLM Integration         | Gemini Pro (for recommendations) |
 
 ---
@@ -39,12 +39,12 @@ This project is an AI-powered system designed to diagnose diseases based on user
 - 🟢 Best for large imbalanced binary datasets
 
 ### 2. **Logistic Regression**
-- ✔️ Accuracy: **88.74%**
+- ✔️ Accuracy: **89.74%**
 - 🔄 Performs well with balanced sampling
 - 🧪 Suitable for linear decision boundaries
 
 ### 3. **Random Forest**
-- 🎯 Accuracy: **90.3%**
+- 🎯 Accuracy: **86.3%**
 - 💡 High precision and recall
 - 🐢 Slower, but better at handling nonlinear patterns
 
@@ -59,7 +59,7 @@ This project is an AI-powered system designed to diagnose diseases based on user
   - **SMOTE / Oversampling** for minority classes
   - Maximum 500 instances per class after balancing
 
----
+---     https://www.kaggle.com/code/prathamjainzee/eda-disease-symptom-dataset-773
 
 ## 🛠️ Technologies Used
 
