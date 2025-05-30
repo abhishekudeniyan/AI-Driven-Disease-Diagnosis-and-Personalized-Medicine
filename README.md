@@ -30,6 +30,13 @@ This project is an AI-powered system designed to diagnose diseases based on user
 
 ---
 
+
+## 📸 UI Snapshot
+
+![App Screenshot](./Screenshot%202024-12-05%20132442.png)
+
+
+---
 ## 🚀 Models Used and Evaluation
 
 ### 1. **Multinomial Naive Bayes**
